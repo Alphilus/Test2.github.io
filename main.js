@@ -1,60 +1,29 @@
-// Bài 1
-function getStringHasMaxLength(strings){
-    let maxLength = 0;
-    for(let i = 0; i < strings.length; i++){
-        if(strings[i].length > maxLength){
-            maxLength = strings[i].length;
-        }
-    }
-    let result = strings.filter(str => str.length === maxLength)
-    return result;
-}
-
-console.log(getStringHasMaxLength(['aba', 'aa', 'ad', 'c', 'vcd']));
-
-//Bài 2
-users = [
+const quizes = [
     {
-        name: "Bùi Công Sơn",
-        age: 30,
-        isStatus: true
+        id: 1,
+        question: "1 + 1 = ?",
+        answers: [1, 2, 3, 4],
     },
     {
-        name: "Nguyễn Thu Hằng",
-        age: 27,
-        isStatus: false
+        id: 2,
+        question: "2 + 2 = ?",
+        answers: [2, 3, 4, 5],
     },
     {
-        name: "Phạm Văn Dũng",
-        age: 20,
-        isStatus: false
-    }
-]
+        id: 3,
+        question: "3 + 3 = ?",
+        answers: [3, 4, 5, 6],
+    },
+];
+const btn = document.getElementById('btn');
+const quizItems = document.querySelectorAll('.quiz-item');
 
-function userAbove25(users) {
-    let isStatus = false; 
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].age > 25) {
-            isStatus = true; 
-            break; 
-        }
-    }
+btn.addEventListener('click', function() {
+    quizItems.forEach((quizItem, index) => {
+        const answers = quizItem.querySelectorAll('.quiz-answer-item input');
 
-    return isStatus;
-}
-console.log(userAbove25(users));
+        const randomAnswerIndex = Math.floor(Math.random() * answers.length);
 
-//Bài 3
-function getcountElements(arr){
-    let count = {};
-    for(let element of arr){
-        if (count[element]){
-            count[element]++;
-        } else {
-            count[element] = 1;
-        }
-    }
-    return count;
-}
-
-console.log(getcountElements(["one", "two", "three", "one", "one", "three"]));
+        answers[randomAnswerIndex].checked = true;
+    });
+});
